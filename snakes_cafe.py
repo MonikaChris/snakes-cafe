@@ -1,6 +1,9 @@
+# Constants
 width = 38
-offset = 2
+offset = 1
+margin = '**'
 greetings = ['Welcome to the Snakes Cafe!', 'Please see our menu blow.', '', 'To quit, at any time, type "quit"']
+prompt = 'What would you like to order?'
 menu = {
     'Appetizers': {
         'Wings': 10,
@@ -25,14 +28,32 @@ menu = {
     }
 }
 
-print('*' * width)
-for greeting in greetings:
-    space = (width - len(greeting))
+
+# Calculates number of spaces needed and returns formatted line
+def format_line(text):
+    space = (width - len(text) - len(margin))
 
     if space % 2 == 0:
-        print('**' + ' ' * (space//2 - offset) + greeting + ' ' * (space//2 - offset) + '**')
+        return margin + ' ' * (space // 2 - offset) + text + ' ' * (space // 2 - offset) + margin
     else:
-        print('**' + ' ' * (space//2 - offset) + greeting + ' ' * (space//2 + 1 - offset) + '**')
+        return margin + ' ' * (space // 2 - offset) + text + ' ' * (space // 2 + 1 - offset) + margin
 
 
+# Print Greeting
+print('*' * width)
+for greeting in greetings:
+    print(format_line(greeting))
 
+# Print Menu
+print()
+for key in menu.keys():
+    print(key)
+    print('_' * len(key))
+    for item in menu[key]:
+        print(item)
+    print()
+
+# Print Prompt
+print('*' * width)
+print(format_line(prompt))
+print('*' * width)
