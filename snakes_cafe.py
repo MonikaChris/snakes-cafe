@@ -73,23 +73,39 @@ print('*' * width)
 print(format_line(prompt))
 print('*' * width)
 
+# Customer's order
+order = {}
+
 # Run cafe
 while running:
     inp = input('> ')
 
     if inp == 'quit':
-        print('Come again soon!')
-        running = False
+        if len(order.keys()) == 0:
+            print('Come again soon!')
+            running = False
+        else:
+            print('Your order has been processed:')
+            for item in order.items():
+                print(item)
+            print('Come again soon!')
+        break
 
     # Match dictionary capitalization:
     query = cap_first_letters(inp)
 
+    # Check menu and add to order
     found = False
     for foods in menu.values():
         if query in foods:
             if foods[query] > 0:
                 foods[query] -= 1
-                print(f'One order of {query} have been added to your meal.')
+                num_ordered = order.setdefault(query, 0)
+                order[query] += 1
+                if num_ordered + 1 == 1:
+                    print(f'1 order of {query} has been added to your meal.')
+                else:
+                    print(f'{num_ordered+1} orders of {query} have been added to your meal')
                 found = True
                 break
             else:
@@ -98,6 +114,3 @@ while running:
                 break
     if not found:
         print(f'Sorry, we don\'t have {query}')
-
-
-
