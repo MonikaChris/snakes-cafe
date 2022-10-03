@@ -20,7 +20,7 @@ menu = {
     'Desserts': {
         'Ice Cream': 10,
         'Cake': 10,
-        'Pie': 2,
+        'Pie': 1,
     },
     'Drinks': {
         'Coffee': 10,
@@ -105,7 +105,7 @@ while running:
                 if num_ordered + 1 == 1:
                     print(f'1 order of {query} has been added to your meal.')
                 else:
-                    print(f'{num_ordered+1} orders of {query} have been added to your meal')
+                    print(f'{num_ordered+1} orders of {query} have been added to your meal.')
                 found = True
                 break
             else:
@@ -113,4 +113,4 @@ while running:
                 found = True
                 break
     if not found:
-        print(f'Sorry, we don\'t have {query}')
+        print(f'Sorry, we don\'t have {query}.')
