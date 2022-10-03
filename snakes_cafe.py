@@ -20,7 +20,7 @@ menu = {
     'Desserts': {
         'Ice Cream': 10,
         'Cake': 10,
-        'Pie': 10,
+        'Pie': 2,
     },
     'Drinks': {
         'Coffee': 10,
@@ -28,6 +28,8 @@ menu = {
         'Unicorn Tears': 10,
     }
 }
+
+# Helper Functions
 
 
 # Calculates number of spaces needed and returns formatted line
@@ -39,6 +41,18 @@ def format_line(text):
     else:
         return margin + ' ' * (space // 2 - offset) + text + ' ' * (space // 2 + 1 - offset) + margin
 
+
+# First letter uppercase, other letters lowercase
+def cap_first_letters(text):
+    line = text
+    for idx, letter in enumerate(inp):
+        if letter == ' ':
+            line = line[:idx + 1] + (line[idx + 1].upper()) + line[idx + 2:]
+    return line[0].upper() + line[1:]
+
+
+
+# Initialize Cafe
 
 # Print Greeting
 print('*' * width)
@@ -59,10 +73,31 @@ print('*' * width)
 print(format_line(prompt))
 print('*' * width)
 
+# Run cafe
 while running:
-    inp = input()
+    inp = input('> ')
 
     if inp == 'quit':
         print('Come again soon!')
         running = False
+
+    # Match dictionary capitalization:
+    query = cap_first_letters(inp)
+
+    found = False
+    for foods in menu.values():
+        if query in foods:
+            if foods[query] > 0:
+                foods[query] -= 1
+                print(f'One order of {query} have been added to your meal.')
+                found = True
+                break
+            else:
+                print(f'Sorry, we\'re out of {query}. Please make another selection.')
+                found = True
+                break
+    if not found:
+        print(f'Sorry, we don\'t have {query}')
+
+
 
