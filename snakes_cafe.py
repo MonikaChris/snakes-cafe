@@ -2,7 +2,7 @@
 width = 38
 offset = 1
 margin = '**'
-greetings = ['Welcome to the Snakes Cafe!', 'Please see our menu blow.', '', 'To quit, at any time, type "quit"']
+greetings = ['Welcome to the Snakes Cafe!', 'Please see our menu below.', '', 'To quit, at any time, type "quit"']
 prompt = 'What would you like to order?'
 running = True
 menu = {
